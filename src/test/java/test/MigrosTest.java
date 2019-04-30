@@ -1,3 +1,4 @@
+
 package test;
 
 import java.util.concurrent.TimeUnit;
@@ -35,11 +36,35 @@ public class MigrosTest {
 
 	}
 	
+	@Test(priority = 2)// test to login with defines username and password
+	public void LoginToPage() throws InterruptedException {
+		MigrosPageObject login = PageFactory.initElements(driver, MigrosPageObject.class);
+		login.loginToMigros("keep.alive.me@gmail.com", "test123");
+
+	}
+
+	@Test(priority = 3)// test to add item to cart
+	public void AddItemtoCart() throws InterruptedException {
+		MigrosPageObject add = PageFactory.initElements(driver, MigrosPageObject.class);
+		add.AddItemtoCart();
+
+	}
+
+	@Test(priority = 4)// test to buy product and validate total amount of cart
+	public void BuyProduct() throws InterruptedException {
+		MigrosPageObject buy = PageFactory.initElements(driver, MigrosPageObject.class);
+		buy.ProductInCart();
+
+	}
+	
 	@AfterTest // finish the test
 	public void TestDown() {
 		// close browser
 
-	 driver.close(); driver.quit();
+	 driver.close(); 
+	 driver.quit();
+	 
+	 
 
 		// System.out.println("Test Completed Successfully");
 	}
@@ -47,3 +72,4 @@ public class MigrosTest {
 	
 
 }
+
